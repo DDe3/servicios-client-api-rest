@@ -24,7 +24,8 @@ public class ServiciosClientApiRestApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("HOLA");
-		this.matriculaService.gestionMatricula();
+		this.matriculaService.gestionCuentaHabientes();
+		//this.matriculaService.gestionMatricula();
 		
 	}
 

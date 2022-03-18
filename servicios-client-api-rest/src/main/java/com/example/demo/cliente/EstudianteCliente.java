@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.demo.to.CuentaHabienteTo;
 import com.example.demo.to.Estudiante;
 import com.example.demo.to.ListaEstudiante;
 
@@ -22,6 +23,7 @@ import com.example.demo.to.ListaEstudiante;
 public class EstudianteCliente {
 	
 	private static final String URL_API_ESTUDIANTE="http://localhost:8080/ApiEstudiantes/V2/estudiantes";
+	private static final String URL_API_CUENTA_HABIENTES="http://localhost:8081/Api/V1/cuentaHabientes";
 	
 	
 	//@Autowired
@@ -73,6 +75,17 @@ public class EstudianteCliente {
 		return restTemplate.postForObject(URL_API_ESTUDIANTE, estu, String.class);
 	}
 	
+	public List<CuentaHabienteTo> buscarTodos() {
+		restTemplate = new RestTemplate();
+		CuentaHabienteTo[] chts = restTemplate.getForObject(URL_API_CUENTA_HABIENTES, CuentaHabienteTo[].class);
+		return Arrays.asList(chts);
+	}
+	
+	public CuentaHabienteTo buscarCuentaHabiente(String url) {
+		restTemplate = new RestTemplate();
+		CuentaHabienteTo chts = restTemplate.getForObject(url, CuentaHabienteTo.class);
+		return chts;
+	}
 	/*
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
